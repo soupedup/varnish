@@ -7,14 +7,13 @@ backend default none;
 
 sub vcl_init {
   new ddir = dynamic.director(
-    port = "80",
+    port = "8080",
     ttl = 10s
   );
 }
 
 sub vcl_recv {
     set req.backend_hint = ddir.backend("ensayo.internal");
-    unset req.http.x-cache;
     if (req.method == "PURGE") {
         return(purge);
     }
