@@ -17,11 +17,12 @@ sub vcl_recv {
     set req.backend_hint = ddir.backend("ensayo.internal");
 
     if (req.method == "BAN") {
-        # Same ACL check as above:
+
+	# TODO: implement ACL for allowed purge sources
         # if (!client.ip ~ purge) {
         #     return(synth(403, "Not allowed."));
         # }
-        # Assumes req.url is a regex. This might be a bit too simple
+
         if (std.ban("obj.http.host == " + req.http.host)) {
             return(synth(200, "Ban added"));
         } else {
