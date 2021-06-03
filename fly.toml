@@ -1,6 +1,4 @@
-# fly.toml file generated for ensayo-varnish on 2021-05-26T13:22:08+02:00
-
-app = "ensayo-varnish"
+app = "varnish"
 
 kill_signal = "SIGINT"
 kill_timeout = 5
