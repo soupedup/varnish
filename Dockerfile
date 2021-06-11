@@ -30,7 +30,7 @@ RUN chmod 755 /usr/local/bin/gomplate
 RUN chmod 755 /init.sh
 
 RUN apt-get update \
-    && apt-get install -y bc curl vim \
+    && apt-get install -y bc curl vim lsof procps \
     && tar xzf /tmp/s6overlay.tar.gz -C / \
     && rm /tmp/s6overlay.tar.gz
 
