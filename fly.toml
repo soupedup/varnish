@@ -9,6 +9,9 @@ kill_timeout = 5
   VARNISH_ADDR = "127.0.0.1:80"
   REDIS_URL = "redis://my-redis.internal:6379" # set this to your Redis 6.2 application name
 
+[build]
+  image = "souped/varnish:latest"
+
 [mounts]
   source="data"
   destination="/data"
