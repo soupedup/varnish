@@ -1,3 +1,9 @@
 #!/usr/bin/with-contenv sh
 
+ip=`getent hosts fly-local-6pn | cut -d ' ' -f1`
+if [[ "$ip" == "" ]]; then
+  IP="127.0.0.1"
+fi
+
+export PURGERY_ID=$IP
 /usr/local/bin/start-purgery.sh
