@@ -8,13 +8,13 @@ backend default none;
 
 sub vcl_init {
   new ddir = dynamic.director(
-    port = "8080",
+    port = std.getenv("BACKEND_PORT"),
     ttl = 10s
   );
 }
 
 sub vcl_recv {
-    set req.backend_hint = ddir.backend("ensayo.internal");
+    set req.backend_hint = ddir.backend(std.getenv("BACKEND_HOST"));
 
     if (req.method == "BAN") {
 

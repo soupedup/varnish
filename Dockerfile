@@ -11,7 +11,6 @@ RUN CGO_ENABLED=0 go build \
     .
 
 FROM ghcr.io/emgag/varnish:6.6.0
-COPY default.vcl /etc/varnish/default.vcl
 
 COPY --from=build /build/binary /usr/local/bin/purgery
 COPY --from=build /build/start.sh /usr/local/bin/start-purgery.sh
@@ -21,8 +20,17 @@ ENV S6_OVERLAY_RELEASE=${S6_OVERLAY_RELEASE}
 
 ADD ${S6_OVERLAY_RELEASE} /tmp/s6overlay.tar.gz
 
+RUN curl -L https://github.com/hairyhenderson/gomplate/releases/download/v3.9.0/gomplate_linux-amd64-slim \
+  -o /usr/local/bin/gomplate
+
+COPY config.vcl.tpl /etc/varnish/config.vcl.tpl
+COPY init.sh /init.sh
+
+RUN chmod 755 /usr/local/bin/gomplate
+RUN chmod 755 /init.sh
+
 RUN apt-get update \
-    && apt-get install -y bc curl \
+    && apt-get install -y bc curl vim \
     && tar xzf /tmp/s6overlay.tar.gz -C / \
     && rm /tmp/s6overlay.tar.gz
 
