@@ -1,9 +1,17 @@
-app = "varnish"
+app = "my-varnish" # change this to a unique application name
 
 kill_signal = "SIGINT"
 kill_timeout = 5
 
 [env]
+  BACKEND_HOST = "myapp.internal" # set this to your backend application name
+  BACKEND_PORT = "8080"
+  VARNISH_ADDR = "127.0.0.1:80"
+  REDIS_URL = "redis://my-redis.internal:6379" # set this to your Redis 6.2 application name
+
+[mounts]
+  source="data"
+  destination="/data"
 
 [experimental]
   private_network = true
