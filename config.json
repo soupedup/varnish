@@ -1,0 +1,15 @@
+{
+  "backends": {
+    "default": {
+      "internal_host": "app.internal"
+    },
+    "anycable": {
+      "public_host": "broadcast.app.com",
+      "internal_host": "anycable.internal"
+    },
+    "forum": {
+      "path": "^/community",
+      "internal_host": "forum.internal"
+    }
+  }
+}
