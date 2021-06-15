@@ -1,15 +1,16 @@
 {
   "backends": {
-    "default": {
-      "internal_host": "app.internal"
+    "anycable.internal": {
+      "host": "broadcast.app.com",
+      "path": "/cable"
     },
-    "anycable": {
-      "public_host": "broadcast.app.com",
-      "internal_host": "anycable.internal"
+    "forum.internal": {
+      "host": "forum.app.com",
+      "path": "^/community"
     },
-    "forum": {
-      "path": "^/community",
-      "internal_host": "forum.internal"
+    "rails.internal": {
+      "default": true
     }
-  }
+  },
+  "force_ssl": true
 }
